@@ -1,0 +1,89 @@
+# API URL: https://gnomad.broadinstitute.org/api/
+# Document: https://github.com/macarthur-lab/gnomadjs/blob/master/projects/gnomad-api/README.md
+
+## gene ######################
+{
+  gene(gene_name: "NLRP3") {
+    symbol
+    name
+    full_gene_name
+    hgnc_id
+    canonical_transcript_id
+    omim_id
+    gnomad_constraint {
+      exp_lof
+      exp_mis
+      exp_syn
+      obs_lof
+      obs_mis
+      obs_syn
+      oe_lof
+      oe_lof_lower
+      oe_lof_upper
+      oe_mis
+      oe_mis_lower
+      oe_mis_upper
+      oe_syn
+      oe_syn_lower
+      oe_syn_upper
+      lof_z
+      mis_z
+      syn_z
+      pLI
+    }
+  }
+}
+
+## variant by chr-pos-ref-alt, INDEL ######################
+{
+  variant(variantId: "1-55517991-C-CAT", dataset: gnomad_r2_1) {
+    variantId
+    reference_genome
+    chrom
+    pos
+    ref
+    alt
+    colocatedVariants
+    sortedTranscriptConsequences {
+      transcript_id
+      consequence_terms
+      canonical
+      major_consequence
+      polyphen_prediction
+      sift_prediction
+      lof
+    }
+  }
+}
+
+## variant another, SNP ######################
+{
+  variant(variantId: "1-94495164-G-A", dataset: gnomad_r2_1) {
+    variantId
+    reference_genome
+    chrom
+    pos
+    ref
+    alt
+    colocatedVariants
+    sortedTranscriptConsequences {
+      gene_symbol
+      major_consequence
+      transcript_id
+      canonical
+      polyphen_prediction
+      sift_prediction
+      lof
+    }
+  }
+}
+
+# search with gene symbol (e.g. PCS), gene id (e.g. ENSG00000140), or transcript id (e.g. ENST00000396)
+{
+# Search(dataset: DatasetId!, query: String!) {
+  searchResults(dataset:gnomad_r2_1 , query: "p35") {
+      label
+      value: url
+    }
+  # }
+}
